@@ -25,8 +25,9 @@ function draw() {
     for (var i = 0; i < waveform.length; i++) {
         theta1 = map(spectrum[i], 0, 255, 0, PI / 2);
         theta2 = map(waveform[i], -1, 1, 0, PI / 2);
+        setTimeout(branch(160),500);
     }
-    branch(160)
+
 
 }
 //
