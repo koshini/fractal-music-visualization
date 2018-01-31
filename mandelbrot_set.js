@@ -2,42 +2,22 @@ var scalar = 5;
 var xTranslate = 5;
 var yTranslate;
 var maxIterations = 50;
-var song, analyzer;
 
-function preload() {
-    song = loadSound('media/music.mp3');
-}
 
 function setup() {
-    createCanvas(windowWidth, windowHeight);
+    createCanvas(windowWidth-100, windowHeight-100);
     pixelDensity(1);
     yTranslate = height / 2 - width / 2;
-
-    song.loop();
-
-    // create a new Amplitude analyzer
-    analyzer = new p5.Amplitude();
-
-    // Patch the input to an volume analyzer
-    analyzer.setInput(song);
-
 }
 
 function draw() {
     loadPixels();
-    var amp = analyzer.getLevel();
-    var coefficient = map(amp, 0, 1, 1, 6);
 
     for (var x = 0; x < width; x++) {
         for (var y = 0; y < height; y++) {
-            var val = coefficient;
 
-            var a = map(x, 0 , width, -val, val);
-            var b = map(y, 0 + yTranslate, width + yTranslate, -val, val);
-
-
-            // var a = map(x, 0 + xTranslate, width + xTranslate, -scalar + coefficient, scalar + coefficient);
-            // var b = map(y, 0 + yTranslate, width + yTranslate, -scalar + coefficient, scalar + coefficient);
+            var a = map(x, 0 + xTranslate, width + xTranslate, -scalar, scalar);
+            var b = map(y, 0 + yTranslate, width + yTranslate, -scalar, scalar);
 
             var ca = a;
             var cb = b;
@@ -67,5 +47,5 @@ function draw() {
     }
     updatePixels();
     scalar *= 0.9;
-    xTranslate = (1 / scalar) * (width * 0.705) ;
+    xTranslate = (1 / scalar) * (width * 0.715) ;
 }
