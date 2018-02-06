@@ -27,7 +27,7 @@ function draw() {
                 var bb = 2 * a * b;
                 a = aa + ca;
                 b = bb + cb;
-                if (a + b > 16) {
+                if (a*a + b*b > 16) {
                     break;
                 }
                 n++;
